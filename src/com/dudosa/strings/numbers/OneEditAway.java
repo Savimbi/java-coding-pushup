@@ -1,4 +1,4 @@
-package com.dudosa.strings;
+package com.dudosa.strings.numbers;
 
 /**
  * Consider two given strings, q and p. Write a snippet of code

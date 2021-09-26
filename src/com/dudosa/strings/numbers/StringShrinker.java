@@ -1,4 +1,4 @@
-package com.dudosa.strings;
+package com.dudosa.strings.numbers;
 
 public class StringShrinker {
 

@@ -1,4 +1,4 @@
-package com.dudosa.designpatern.factory;
+package com.dudosa.strings.numbers.designpatern.factory;
 
 public class Apple implements Fruit {
     @Override

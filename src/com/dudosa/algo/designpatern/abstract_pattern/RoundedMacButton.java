@@ -1,4 +1,4 @@
-package com.dudosa.designpatern.abstract_pattern;
+package com.dudosa.strings.numbers.designpatern.abstract_pattern;
 
 public class RoundedMacButton extends MacButton {
     @Override

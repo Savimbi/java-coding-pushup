@@ -1,4 +1,4 @@
-package com.dudosa.strings.numbers;
+package com.dudosa.strings.numbers.strings.numbers;
 
 import java.util.List;
 

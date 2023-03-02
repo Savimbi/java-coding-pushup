@@ -1,4 +1,4 @@
-package com.dudosa.designpatern.factory;
+package com.dudosa.strings.numbers.designpatern.factory;
 
 public class Banana implements Fruit{
     @Override

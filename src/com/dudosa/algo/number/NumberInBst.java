@@ -1,4 +1,4 @@
-package com.dudosa.strings.numbers;
+package com.dudosa.strings.numbers.number;
 public class NumberInBst {
 
     public  static int findClosestNumberInBst(BST tree, int target){

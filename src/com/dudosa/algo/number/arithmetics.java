@@ -5,7 +5,8 @@ import java.util.*;
 public class arithmetics {
 
     public static void main(String[] args) {
-        System.out.println(fromRomanToDecimal("CDXLIV"));
+        int[] input = {2,4,3,6,7,4};
+        System.out.println(checkSumPair(input,9));
     }
 
     static int calc(int m, int n){
@@ -171,6 +172,19 @@ public class arithmetics {
         return value;
     }
     // end
+
+    static String checkSumPair(int[] arr, int sum){
+        //Set<Integer> element = new HashSet<>();
+        for (int i = 0; i < arr.length -1; i++){
+            for(int j = i + 1; j < arr.length; j++){
+                int sumNum = arr[i] + arr[j];
+                if(sumNum == sum){
+                    return "True";
+                }
+            }
+        }
+        return "False";
+    }
 
 
 

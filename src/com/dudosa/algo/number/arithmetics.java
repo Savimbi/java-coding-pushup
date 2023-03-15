@@ -1,12 +1,14 @@
 package com.dudosa.strings.numbers.number;
 
+import java.security.spec.RSAOtherPrimeInfo;
 import java.util.*;
 
 public class arithmetics {
 
     public static void main(String[] args) {
         int[] input = {2,4,3,6,7,4};
-        System.out.println(toRomanNumber(2020));
+        quadraticEquation();
+//        System.out.println(toRomanNumber(2020));
     }
 
     static int calc(int m, int n){
@@ -225,7 +227,20 @@ public class arithmetics {
         }
         return result.toString();
     }
+ // end decimal to roman
 
+    //display c^2 = a^2 + b^2
+    static void  quadraticEquation(){
+        for(int a = 0; a < 100; a ++){
+            for(int b = 1; b < 100; b++){
+                int inSqrt = (a*a) + (b*b);
+                int c = (int) Math.sqrt(inSqrt);
+                if(c < 100 && c * c == inSqrt){
+                    System.out.println("a = " + a + " / b = " + b + " / c = " + c);
+                }
+            }
+        }
+    }
 
     enum ReturnCode{SUM,COUNT}
 }

@@ -6,7 +6,7 @@ public class arithmetics {
 
     public static void main(String[] args) {
         int[] input = {2,4,3,6,7,4};
-        System.out.println(checkSumPair(input,9));
+        System.out.println(toRomanNumber(2020));
     }
 
     static int calc(int m, int n){
@@ -186,6 +186,45 @@ public class arithmetics {
         return "False";
     }
 
+    // Decimal number to roman
+ static String toRomanNumber(int value){
+        String result = "";
+        int remainder = value;
+     Map<Integer, String> decimalRomanMap = Map.of(1,"I",5,"V", 10,"X", 50,"L", 100,
+             "C", 500,"D",1000,"M");
+        Comparator<Integer> reverse = Comparator.reverseOrder();
+        Map<Integer,String> sortedDecimalRoman = new TreeMap<>(reverse);
+
+     sortedDecimalRoman.putAll(decimalRomanMap);
+     var it = sortedDecimalRoman.entrySet().iterator();
+     while(it.hasNext() && remainder > 0){
+        Map.Entry<Integer,String> entry = it.next();
+        int multiplier = entry.getKey();
+        String romanDig = entry.getValue();
+        if(remainder >= 900 && romanDig =="D"){
+            result += "CM";
+            remainder -= 900;
+        } else if (remainder >= 4 && romanDig == "I") {
+            result += "IV";
+            remainder -= 4;
+            
+        } else {
+            int times = remainder / multiplier;
+            remainder = remainder % multiplier;
+            result += repeatCharSequence(romanDig, times);
+        }
+
+     }
+     return result;
+ }
+
+    private static String repeatCharSequence(String romanDig, int times) {
+        StringBuilder result = new StringBuilder();
+        for(int i = 0 ; i < times; i++){
+            result.append(romanDig);
+        }
+        return result.toString();
+    }
 
 
     enum ReturnCode{SUM,COUNT}

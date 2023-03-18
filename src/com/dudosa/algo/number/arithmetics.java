@@ -7,7 +7,7 @@ public class arithmetics {
 
     public static void main(String[] args) {
         int[] input = {3, 4, 4, 6, 1, 4, 4};
-        System.out.println(solution(new int[]{2,3,1,5}));
+        System.out.println(equilibrium(new int[]{ 3,1,2,4,3}));
     }
 
     static int calc(int m, int n) {
@@ -265,7 +265,7 @@ public class arithmetics {
         }
         return counters;
     }
-
+    // O(n) time "one for loop"| O(1) space
     static int solution(int[] A){
         long actualSum = 0;
         for(int num: A){
@@ -275,6 +275,22 @@ public class arithmetics {
         long expected = maxValue * (maxValue + 1)/2;
         return  (int)( expected-actualSum);
 
+    }
+    //O(n) time "for loop" | O(1) time: no more memory needed
+    static int equilibrium(int[] A){
+        int leftSum = A[0];
+        int rightSum = 0;
+        for(int x : A) rightSum += x;
+        rightSum -= leftSum;
+        int minDiff = Math.abs(leftSum - rightSum);
+        for(int i =1; i < A.length - 1; i ++){
+            leftSum += A[i];
+            rightSum -= A[i];
+            int currentDiff = Math.abs(rightSum - leftSum);
+            if(minDiff > currentDiff) minDiff = currentDiff;
+
+        }
+        return minDiff;
     }
 
     enum ReturnCode {SUM, COUNT}

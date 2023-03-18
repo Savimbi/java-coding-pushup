@@ -7,7 +7,7 @@ public class arithmetics {
 
     public static void main(String[] args) {
         int[] input = {3, 4, 4, 6, 1, 4, 4};
-        System.out.println(equilibrium(new int[]{ 3,1,2,4,3}));
+        System.out.println(Arrays.toString(cyclicRotation(new int[]{ 3,1,2,4,3},2)));
     }
 
     static int calc(int m, int n) {
@@ -293,5 +293,17 @@ public class arithmetics {
         return minDiff;
     }
 
+    //O(n) time | O(n) space
+    static int[] cyclicRotation(int[] array, int rotation){
+        int len = array.length;
+        int[] result = new int[len];
+
+            for (int i = 0; i < len; i++) {
+                int newIdx = (i+rotation)% len;
+                result[newIdx] = array[i];
+            }
+
+        return result;
+    }
     enum ReturnCode {SUM, COUNT}
 }

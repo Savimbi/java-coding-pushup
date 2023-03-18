@@ -7,7 +7,7 @@ public class arithmetics {
 
     public static void main(String[] args) {
         int[] input = {3, 4, 4, 6, 1, 4, 4};
-        System.out.println(Arrays.toString(maxCounter(5, input)));
+        System.out.println(solution(new int[]{2,3,1,5}));
     }
 
     static int calc(int m, int n) {
@@ -266,6 +266,16 @@ public class arithmetics {
         return counters;
     }
 
+    static int solution(int[] A){
+        long actualSum = 0;
+        for(int num: A){
+            actualSum += num;
+        }
+        long maxValue = A.length +1;
+        long expected = maxValue * (maxValue + 1)/2;
+        return  (int)( expected-actualSum);
+
+    }
 
     enum ReturnCode {SUM, COUNT}
 }

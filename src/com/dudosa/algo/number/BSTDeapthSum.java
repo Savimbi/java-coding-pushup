@@ -1,4 +1,4 @@
-package com.dudosa.strings.numbers;
+package com.dudosa.strings.numbers.number;
 
 public class BSTDeapthSum {
     public static int nodeDepths(BinaryTree root) {

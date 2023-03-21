@@ -6,8 +6,8 @@ import java.util.*;
 public class arithmetics {
 
     public static void main(String[] args) {
-        Integer[] input = {1,1,1,1,5,10,20,50};
-        System.out.println(calcMaxChange(Arrays.asList(input)));
+        Integer[] input = {1, 1, 1, 1, 5, 10, 20, 50};
+        System.out.println(calcFriends(300));
     }
 
     static int calc(int m, int n) {
@@ -265,57 +265,59 @@ public class arithmetics {
         }
         return counters;
     }
+
     // O(n) time "one for loop"| O(1) space
-    static int solution(int[] A){
+    static int solution(int[] A) {
         long actualSum = 0;
-        for(int num: A){
+        for (int num : A) {
             actualSum += num;
         }
-        long maxValue = A.length +1;
-        long expected = maxValue * (maxValue + 1)/2;
-        return  (int)( expected-actualSum);
+        long maxValue = A.length + 1;
+        long expected = maxValue * (maxValue + 1) / 2;
+        return (int) (expected - actualSum);
 
     }
+
     //O(n) time "for loop" | O(1) time: no more memory needed
-    static int equilibrium(int[] A){
+    static int equilibrium(int[] A) {
         int leftSum = A[0];
         int rightSum = 0;
-        for(int x : A) rightSum += x;
+        for (int x : A) rightSum += x;
         rightSum -= leftSum;
         int minDiff = Math.abs(leftSum - rightSum);
-        for(int i =1; i < A.length - 1; i ++){
+        for (int i = 1; i < A.length - 1; i++) {
             leftSum += A[i];
             rightSum -= A[i];
             int currentDiff = Math.abs(rightSum - leftSum);
-            if(minDiff > currentDiff) minDiff = currentDiff;
+            if (minDiff > currentDiff) minDiff = currentDiff;
 
         }
         return minDiff;
     }
 
     //O(n) time | O(n) space
-    static int[] cyclicRotation(int[] array, int rotation){
+    static int[] cyclicRotation(int[] array, int rotation) {
         int len = array.length;
         int[] result = new int[len];
 
-            for (int i = 0; i < len; i++) {
-                int newIdx = (i+rotation)% len;
-                result[newIdx] = array[i];
-            }
+        for (int i = 0; i < len; i++) {
+            int newIdx = (i + rotation) % len;
+            result[newIdx] = array[i];
+        }
 
         return result;
     }
 
     //O(n^3) time | O(1) space
-    static void  solveCubicEq(){
-        for(int a =1; a<100; a++){
-            for(int b=1; b<100; b++){
-                for(int c=1; c<100; c++){
-                    int value = a*a+b*b-c*c;
-                    if (value >0){
+    static void solveCubicEq() {
+        for (int a = 1; a < 100; a++) {
+            for (int b = 1; b < 100; b++) {
+                for (int c = 1; c < 100; c++) {
+                    int value = a * a + b * b - c * c;
+                    if (value > 0) {
                         int d = (int) Math.sqrt(value);
-                        if(d<100 && a*a+b*b==c*c+d*d){
-                            System.out.println("a= "+a+"/b= "+b+"/c= "+c+"/d= "+d);
+                        if (d < 100 && a * a + b * b == c * c + d * d) {
+                            System.out.println("a= " + a + "/b= " + b + "/c= " + c + "/d= " + d);
                         }
                     }
                 }
@@ -324,16 +326,16 @@ public class arithmetics {
     }
 
     //Armstrong numbers O(n^3) time | O(1) space
-    static List<Integer> calcArmstrongNumbers(){
+    static List<Integer> calcArmstrongNumbers() {
         List<Integer> results = new ArrayList<>();
-        for(int x =1; x<10; x++){
-            for(int y=1; y <10; y++){
-                for(int z=1; z<10; z++){
-                    int numeric = 100*x + 10*y + z;
-                    int cubicValue = (int) (Math.pow(x,3)
-                            + Math.pow(y,3)
-                            + Math.pow(z,3));
-                    if(numeric == cubicValue){
+        for (int x = 1; x < 10; x++) {
+            for (int y = 1; y < 10; y++) {
+                for (int z = 1; z < 10; z++) {
+                    int numeric = 100 * x + 10 * y + z;
+                    int cubicValue = (int) (Math.pow(x, 3)
+                            + Math.pow(y, 3)
+                            + Math.pow(z, 3));
+                    if (numeric == cubicValue) {
                         results.add(numeric);
                     }
                 }
@@ -342,18 +344,46 @@ public class arithmetics {
         return results;
     }
 
-    static int calcMaxChange(List<Integer> value){
+    static int calcMaxChange(List<Integer> value) {
         List<Integer> sortedNumbers = new ArrayList<>(value);
         sortedNumbers.sort(Integer::compareTo);
 
         int maxChange = 0;
-        for (int number : sortedNumbers){
-            if(number > maxChange + 1)
+        for (int number : sortedNumbers) {
+            if (number > maxChange + 1)
                 break;
             maxChange += number;
         }
 
-return maxChange;
+        return maxChange;
     }
+    static Map<Integer,Integer> calcFriends(int max){
+        Map<Integer,Integer> friends = new TreeMap<>();
+        for(int number=2; number< max; number++){
+            List<Integer> divisor1 = findProperDivisors(number);
+            int sumDiv1 = sum(divisor1);
+            List<Integer> divisor2 = findProperDivisors(sumDiv1);
+            int sumDiv2 = sum(divisor2);
+            if(number == sumDiv2 && sumDiv1 != sumDiv2){
+                friends.put(number, sumDiv1);
+            }
+        }
+        return friends;
+    }
+
+    private static List<Integer> findProperDivisors(int value) {
+        final List<Integer> divisors = new ArrayList<>();
+        for (int i = 1; i <= value / 2; i++) {
+            if (value % i == 0) {
+                divisors.add(i);
+            }
+        }
+        return divisors;
+    }
+
+    private static Integer sum(List<Integer> values) {
+       return values.stream().mapToInt(n -> n).sum();
+    }
+
     enum ReturnCode {SUM, COUNT}
 }

@@ -6,8 +6,8 @@ import java.util.*;
 public class arithmetics {
 
     public static void main(String[] args) {
-        int[] input = {3, 4, 4, 6, 1, 4, 4};
-        System.out.println(Arrays.toString(cyclicRotation(new int[]{ 3,1,2,4,3},2)));
+        Integer[] input = {1,1,1,1,5,10,20,50};
+        System.out.println(calcMaxChange(Arrays.asList(input)));
     }
 
     static int calc(int m, int n) {
@@ -304,6 +304,56 @@ public class arithmetics {
             }
 
         return result;
+    }
+
+    //O(n^3) time | O(1) space
+    static void  solveCubicEq(){
+        for(int a =1; a<100; a++){
+            for(int b=1; b<100; b++){
+                for(int c=1; c<100; c++){
+                    int value = a*a+b*b-c*c;
+                    if (value >0){
+                        int d = (int) Math.sqrt(value);
+                        if(d<100 && a*a+b*b==c*c+d*d){
+                            System.out.println("a= "+a+"/b= "+b+"/c= "+c+"/d= "+d);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    //Armstrong numbers O(n^3) time | O(1) space
+    static List<Integer> calcArmstrongNumbers(){
+        List<Integer> results = new ArrayList<>();
+        for(int x =1; x<10; x++){
+            for(int y=1; y <10; y++){
+                for(int z=1; z<10; z++){
+                    int numeric = 100*x + 10*y + z;
+                    int cubicValue = (int) (Math.pow(x,3)
+                            + Math.pow(y,3)
+                            + Math.pow(z,3));
+                    if(numeric == cubicValue){
+                        results.add(numeric);
+                    }
+                }
+            }
+        }
+        return results;
+    }
+
+    static int calcMaxChange(List<Integer> value){
+        List<Integer> sortedNumbers = new ArrayList<>(value);
+        sortedNumbers.sort(Integer::compareTo);
+
+        int maxChange = 0;
+        for (int number : sortedNumbers){
+            if(number > maxChange + 1)
+                break;
+            maxChange += number;
+        }
+
+return maxChange;
     }
     enum ReturnCode {SUM, COUNT}
 }

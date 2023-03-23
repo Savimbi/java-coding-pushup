@@ -7,7 +7,7 @@ public class arithmetics {
 
     public static void main(String[] args) {
         Integer[] input = {1, 1, 1, 1, 5, 10, 20, 50};
-        System.out.println(calcFriends(300));
+        System.out.println(toHex(77));
     }
 
     static int calc(int m, int n) {
@@ -383,6 +383,38 @@ public class arithmetics {
 
     private static Integer sum(List<Integer> values) {
        return values.stream().mapToInt(n -> n).sum();
+    }
+
+
+    static String toBinary(int value){
+        if(value < 0)
+            throw new IllegalArgumentException("The value must be greater than 0");
+        if(value <= 1){
+            return String.valueOf(value);
+        }
+        int lastDigit = value % 2;
+        int remainder = value / 2;
+        return toBinary(remainder) + lastDigit;
+    }
+
+    static String toHex(int value){
+        if(value<0){
+            throw  new IllegalArgumentException("Value should be greater the 0");
+        }
+        if(value <= 15){
+            return asHexDigit(value);
+        }
+        int lastDig = value % 16;
+        int remainder = value / 16;
+        return toHex(remainder)+asHexDigit(lastDig);
+    }
+
+    private static String asHexDigit(int value) {
+        if(value <= 15){
+            char hexDig = "0123456789ABCDEF".charAt(value);
+            return String.valueOf(hexDig);
+        }
+        throw new IllegalArgumentException("The value is not in range[0-15]");
     }
 
     enum ReturnCode {SUM, COUNT}
